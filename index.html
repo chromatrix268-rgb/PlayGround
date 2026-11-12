@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101c2a">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>">
+  <title>Little Light — a quiet night game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <div class="stars stars-one"></div><div class="stars stars-two"></div>
+    <div class="moon"><span></span></div>
+    <div class="hill hill-back"></div><div class="hill hill-front"></div>
+    <div class="tree tree-left"><i></i><i></i><i></i><b></b></div>
+    <div class="tree tree-right"><i></i><i></i><i></i><b></b></div>
+    <div class="fireflies" id="fireflies"></div>
+  </div>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Little Light home"><span class="brand-mark">✦</span> little light</a>
+      <div class="top-note"><span class="live-dot"></span> a small game for a softer moment</div>
+      <button class="sound-toggle" id="soundToggle" aria-label="Turn ambient sound on" title="Ambient sound">
+        <svg class="sound-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M16 9a5 5 0 0 1 0 6M18.5 6.5a8.5 8.5 0 0 1 0 11"/></svg>
+        <span id="soundLabel">Sound off</span>
+      </button>
+    </header>
+
+    <section class="game-layout" aria-label="Little Light game">
+      <div class="story-column">
+        <p class="eyebrow"><span class="eyebrow-line"></span> YOUR NIGHTLY RITUAL</p>
+        <h1>A little light<br>goes a <em>long way.</em></h1>
+        <p class="intro">The woods are getting sleepy. Keep your lantern glowing as you wander through the night.</p>
+        <div class="journey-card">
+          <div class="journey-top"><span class="journey-icon">☾</span><span id="journeyLabel">THE NIGHT WALK</span><span class="journey-dots">···</span></div>
+          <div class="journey-title" id="journeyTitle">A path through the pines</div>
+          <p id="journeyCopy">There’s no rush. Just give your lantern a little love now and then.</p>
+          <div class="journey-progress"><div class="journey-progress-fill" id="journeyProgress"></div></div>
+          <div class="journey-foot"><span id="journeyStatus">Your walk begins when you’re ready</span><span id="walkTime">02:00</span></div>
+        </div>
+        <div class="quiet-note"><span>✧</span><span>Take your time. The night is yours.</span></div>
+      </div>
+
+      <div class="play-column">
+        <div class="lantern-scene" id="lanternScene">
+          <div class="scene-glow" id="sceneGlow"></div>
+          <div class="orb-orbit orbit-a"></div><div class="orb-orbit orbit-b"></div>
+          <div class="lantern-wrap" id="lanternWrap">
+            <div class="lantern-rays"></div>
+            <svg class="lantern-art" viewBox="0 0 160 210" role="img" aria-label="A glowing camping lantern">
+              <defs>
+                <linearGradient id="glass" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f9d991" stop-opacity=".28"/><stop offset=".5" stop-color="#fff1bb" stop-opacity=".1"/><stop offset="1" stop-color="#e4a957" stop-opacity=".25"/></linearGradient>
+                <linearGradient id="flame" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#fff8cf"/><stop offset="1" stop-color="#ffb95e"/></linearGradient>
+              </defs>
+              <path class="handle" d="M54 46V30a26 26 0 0 1 52 0v16"/>
+              <path class="handle-inner" d="M62 43V31a18 18 0 0 1 36 0v12"/>
+              <path class="cap" d="M45 47h70l-7 15H52z"/><path class="cap-top" d="M54 41h52v8H54z"/>
+              <path class="frame" d="M48 61h64l-7 93H55z"/>
+              <path class="glass" d="M56 67h48l-5 76H61z"/>
+              <path class="flame" d="M80 132c-17-12-9-24 0-39 1 10 12 14 7 28 7-5 9-12 8-18 17 26-1 35-15 29Z"/>
+              <path class="base" d="M50 153h60l8 13H42z"/><path class="base-line" d="M47 160h66"/>
+              <circle class="screw" cx="51" cy="61" r="3"/><circle class="screw" cx="109" cy="61" r="3"/>
+              <path class="shine" d="m63 75-3 42"/><path class="shine" d="m99 75-2 23"/>
+            </svg>
+            <div class="lantern-ground"></div>
+            <span class="spark spark-one">✦</span><span class="spark spark-two">·</span><span class="spark spark-three">✧</span>
+          </div>
+          <div class="scene-caption"><span class="caption-dot"></span><span id="sceneCaption">Your lantern is waiting</span></div>
+        </div>
+
+        <div class="battery-card">
+          <div class="battery-heading"><div><span class="section-label">LANTERN BATTERY</span><div class="battery-subtitle">A little warmth at a time</div></div><div class="percentage"><span id="batteryValue">64</span><span class="percent-sign">%</span></div></div>
+          <div class="battery-track" role="progressbar" aria-label="Lantern battery" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64" id="batteryTrack"><div class="battery-fill" id="batteryFill"><div class="fill-shimmer"></div></div><div class="battery-tick tick-25"></div><div class="battery-tick tick-50"></div><div class="battery-tick tick-75"></div></div>
+          <div class="battery-scale"><span>dim</span><span>glowing</span><span>full</span></div>
+          <button class="charge-button" id="chargeButton"><span class="button-icon">✧</span><span id="buttonLabel">Give it a little glow</span><span class="button-plus">+10%</span></button>
+          <div class="drain-note"><span class="drain-icon">↓</span> The lantern gently fades over time <span class="drain-rate">· 0.35% / sec</span></div>
+          <div class="charge-feedback" id="chargeFeedback" aria-live="polite"></div>
+        </div>
+        <div class="session-stats"><div><span class="stat-icon">✦</span><span id="sparksCount">0</span><span class="stat-label">sparks gathered</span></div><span class="stat-divider"></span><div><span class="stat-icon stat-moon">☾</span><span id="nightsCount">0</span><span class="stat-label">night walks</span></div><button class="reset-button" id="resetButton" title="Start a fresh night" aria-label="Start a fresh night">↻</button></div>
+      </div>
+    </section>
+    <footer><span>Made for little pauses.</span><span>Stay a while <span class="footer-star">✦</span></span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="game.js"></script>
+</body>
+</html>
